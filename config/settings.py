@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+AUTH_USER_MODEL = 'user.User'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,6 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
+    'problems',
+    'todolist',
 ]
 
 MIDDLEWARE = [
