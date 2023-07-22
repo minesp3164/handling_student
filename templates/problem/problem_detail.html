@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{problem.title}}</title>
+</head>
+<body>
+<h1>{{problem.title}}</h1>
+<h2>{{problem.difficulty}}</h2>
+<div>
+  {{problem.content|linebreaksbr}}
+</div>
+<ul>
+  {%for comment in problem.comment_set.all%}
+    <li>{{comment.user}} : {{comment.content}}</li>
+  {% empty %}
+    <li>아직 댓글이 없습니다</li>
+  {%endfor%}
+</ul>
+<div>
+</div>
+</body>
+</html>
