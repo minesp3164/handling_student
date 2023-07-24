@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "user_base.html" %}
+{% block content %}
   <form method="post" enctype="multipart/form-data">
     <h2>회원가입</h2>
     {%csrf_token%}
@@ -12,5 +7,4 @@
     <button type="submit">회원가입</button>
     <a href="/user/login">로그인 하러 가기</a>
   </form>
-</body>
-</html>
+{%endblock %}

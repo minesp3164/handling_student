@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+{% extends "base.html" %}
+{% block content %}
 <body>
-<h1>문제들</h1>
+<h1>{%if problems.count > 1%}{{problems.count}}개의 문제들
+    {%else%} {{problems.count}}개의 문제
+  {%endif%}
+</h1>
   {%for problem in problems%}
     <p><a href="/problems/{{problem.id}}/">{{problem.title}}</a></p>
   {%endfor%}
 </body>
-</html>
+{%endblock%}

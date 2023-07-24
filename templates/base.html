@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>나의 프로젝트</title>
+  {% load static%}
+  <script src="https://kit.fontawesome.com/8f52cccda6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{%static 'base_style.css'%}">
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar__logo">
+    <a href="/user/detail/{{user.username}}"><i class="fa-regular fa-user"></i></a>
+  </div>
+  <ul class="navbar__menu">
+    <li><a href="/problems/">problems</a></li>
+    <li><a href="/todolist/">todolist</a></li>
+  </ul>
+  <ul class="navbar__tome">
+    <a href="https://github.com/minesp3164"/><i class="fa-brands fa-github"></i></a>
+    <i class="fa-brands fa-google"></i>
+    <i class="fa-solid fa-phone"></i>
+  </ul>
+</nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
