@@ -26,6 +26,7 @@ class Problems(models.Model):
         return f'{self.title} : {self.id}'
 
 
+
 class Comment(models.Model):
     user = models.ForeignKey(
         "user.User",

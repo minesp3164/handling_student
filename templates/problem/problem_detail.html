@@ -5,13 +5,33 @@
 <div>
   {{problem.content|linebreaksbr}}
 </div>
+<p></p>
+<div class="comment_count">{{problem.comment_set.count}}개의 댓글</div>
 <ul>
   {%for comment in problem.comment_set.all%}
-    <li>{{comment.user}} : {{comment.content}}</li>
+
+  <li>
+    <spqn>{{comment.user}}</spqn>
+    <span>{{comment.content}}</span>
+    {%if user == comment.user%}
+        <form method="post" action="/problems/comment_delete/{{comment.id}}">
+          {% csrf_token%}
+          <button type="submit"><i class="fa-solid fa-delete-left"></i></button>
+        </form>
+    {%endif%}
+  </li>
+
   {% empty %}
     <li>아직 댓글이 없습니다</li>
   {%endfor%}
+  <div class="comment_create">
+    <form method="post" action="/problems/{{problem.id}}/comment_add/">
+      <input type="hidden" name="problem" value="{{problem.id}}">
+      {% csrf_token %}
+      {{comment_form.content}}
+      <button type="submit">답글 달기</button>
+    </form>
+  </div>
 </ul>
-<div>
-</div>
+
 {%endblock%}
