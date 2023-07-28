@@ -1,4 +1,14 @@
 {%extends 'base.html'%}
+{% load mathfilters %}
 {%block content%}
 <h1>{{user.username}}</h1>
+<div>가입한 시간: {{user.date_joined}}</div>
+<div>마지막으로 로그인한 시간:
+{%if ismin%}
+    {{lastlogin}} 분전
+  {%else%}
+    {{lastlogin.seconds}} 초전
+  {%endif%}
+
+</div>
 {%endblock%}

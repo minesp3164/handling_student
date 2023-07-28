@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+from django.utils import timezone
+
 from .forms import LoginForm, SignupForm
 from .models import User
 
@@ -41,26 +43,33 @@ def signup_view(request):
     if request.method=="POST":
         form = SignupForm(data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            password1 = form.cleaned_data["password1"]
-            password2 = form.cleaned_data["password2"]
-            if password1 != password2:
-                form.add_error("password2", "비밀번호와 비밀번호 확인란의 값이 다릅니다.")
-            if User.objects.filter(username=username).exists():
-                form.add_error("username", "입력한 사용자명은 이미 사용중입니다.")
-            if form.errors:
-                context = {"form": form}
-                return render(request, "user/signup.html", context)
-            else:
-                user = User.objects.create_user(
-                    username=username,
-                    password=password1,
-                )
-                login(request, user)
-                return redirect('/problems/')
+            user= form.save()
+            login(request,user)
+            return redirect("/problems/")
+        else:
+            context = {
+                "form":form,
+            }
+            return render(request, "user/signup.html",context)
     else:
         form = SignupForm()
         context = {
             "form": form
         }
         return render(request, "user/signup.html", context)
+
+
+def user_detail(request,username):
+    user = User.objects.get(username=username)
+    lastlogin = timezone.now() - user.last_login
+    ismin = False
+    if lastlogin.seconds > 60:
+        lastlogin = lastlogin.seconds//60
+        ismin = True
+
+    context = {
+        'user': user,
+        'lastlogin':lastlogin,
+        'ismin': ismin
+    }
+    return render(request, "user/user_detail.html", context)
