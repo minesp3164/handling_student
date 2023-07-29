@@ -40,15 +40,15 @@ def logout_view(request):
 
 
 def signup_view(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = SignupForm(data=request.POST)
         if form.is_valid():
-            user= form.save()
-            login(request,user)
+            user = form.save()
+            login(request, user)
             return redirect("/problems/")
         else:
             context = {
-                "form":form,
+                "form": form,
             }
             return render(request, "user/signup.html",context)
     else:
@@ -61,15 +61,15 @@ def signup_view(request):
 
 def user_detail(request,username):
     user = User.objects.get(username=username)
-    lastlogin = timezone.now() - user.last_login
+    last_login = timezone.now() - user.last_login
     ismin = False
-    if lastlogin.seconds > 60:
-        lastlogin = lastlogin.seconds//60
+    if last_login.seconds > 60:
+        last_login = last_login.seconds//60
         ismin = True
 
     context = {
         'user': user,
-        'lastlogin':lastlogin,
+        'lastlogin':last_login,
         'ismin': ismin
     }
     return render(request, "user/user_detail.html", context)
