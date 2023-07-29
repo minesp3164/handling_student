@@ -17,14 +17,18 @@ class Answer(models.Model):
 
 
 class Problems(models.Model):
+    user = models.ForeignKey(
+        "user.User",
+        verbose_name="작성자",
+        on_delete=models.CASCADE
+                )
     difficulty = models.ForeignKey(Difficulty, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.title} : {self.id}'
-
+        return f'{self.title}'
 
 
 class Comment(models.Model):
