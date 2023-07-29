@@ -4,7 +4,22 @@
     --accent-color:#e0ebe8;
     --text-color:#000000;
 }
+.wrap-container {
+  height:auto;
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+footer {
+  position: relative;
+  height: 60px;
+  transform: translateY(0%);
+  border-top: #626695;
 
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color:#626695;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -13,6 +28,7 @@
   padding: 8px 12px;
 }
 body {
+  height: 100%;
   margin: 0;
   background-color: var(--bodybackground-color);
 }

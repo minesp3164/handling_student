@@ -8,19 +8,29 @@
   <link rel="stylesheet" href="{%static 'base_style.css'%}">
 </head>
 <body>
-<nav class="navbar">
+<div className="wrap-container">
+  <nav class="navbar">
   <div class="navbar__logo">
-    <a href="/user/detail/{{user.username}}"><i class="fa-regular fa-user"></i></a>
+    <a href="/user/detail/{{user.username}}"><i class="fa-solid fa-user"></i></a>
   </div>
   <ul class="navbar__menu">
     <li><a href="/problems/">problems</a></li>
     <li><a href="/todolist/">todolist</a></li>
   </ul>
   <ul class="navbar__tome">
-    <a href="https://github.com/minesp3164"/><i class="fa-brands fa-github"></i></a>
+    <a href="/user/logout/">logout</a>
   </ul>
 </nav>
+</div>
     {% block content %}
     {% endblock %}
+<footer>
+  <div class="footer-github">
+    my github
+    <a href="https://github.com/minesp3164"/><i class="fa-brands fa-github"></i></a>
+  </div>
+  <div class="footer">
+  </div>
+</footer>
 </body>
 </html>
