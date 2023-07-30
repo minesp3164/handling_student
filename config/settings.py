@@ -4,7 +4,7 @@ from pathlib import Path
 AUTH_USER_MODEL = 'user.User'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'user',
     'problems',
     'todolist',
+    'tailwind',
+    'theme',
 ]
 
 MIDDLEWARE = [
@@ -95,3 +97,8 @@ STATICFILES_DIRS = [BASE_DIR/"static"]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
