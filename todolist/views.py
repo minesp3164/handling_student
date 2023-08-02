@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from .forms import TodoListForm
@@ -48,3 +49,11 @@ def todolist_checked(request, todolist_id):
     todolist.save()
 
     return HttpResponseRedirect("/todolist/")
+
+
+def todolist_delete(request,todolist_id):
+    todolist = get_object_or_404(TodoList,pk=todolist_id)
+    if todolist.author == request.user:
+        todolist.delete()
+    return HttpResponseRedirect("/todolist/")
+
