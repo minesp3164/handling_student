@@ -1,24 +1,34 @@
 {%extends "base.html"%}
 {% block content %}
-<h1>{{user.username}} 의TodoList</h1>
-{%for todolist in todolists%}
-  <p>
-    <a href="#">{{ todolist.content }}</a>
-    <small>{{todolist.created_at}}</small>
-    <small>~{{todolist.finish_at}}</small>
-    <form action="/todolist/{{todolist.id}}/checked/" method="post">
-      {%csrf_token%}
-      {% if todolist.checked %}
-          <button type="submit"><i class="fa-regular fa-square"></i></button>
-      {% else %}
-          <button type="submit"><i class="fa-solid fa-square-check"></i></button>
-      {%endif%}
-    </form>
-  </p>
-{%empty%}
-  <div>추가하고 오세요</div>
+<h1>
+  {{user.username}} 의TodoList
+</h1>
+<div id="wrapper">
+  <div class="one">
+      <a href="add/" class="bg-cyan-300"> 추가</a>
+  </div>
+  <div id="todolist_list" class="">
+    <p>
+  {%for todolist in todolists%}
+      <a href='detail/{{todolist.id}}'>{{ todolist.content }}</a>
+      <l>{{todolist.id}}</l>
+      <small>{{todolist.created_at}}</small>
+      <small>~{{todolist.finish_at}}</small>
+      <form action="/todolist/{{todolist.id}}/checked/" method="post">
+        {%csrf_token%}
+        {% if todolist.checked %}
+            <button type="submit"><i class="fa-solid fa-square-check"></i></button>
+        {% else %}
+            <button type="submit"><i class="fa-regular fa-square"></i></button>
+        {%endif%}
+      </form>
+    </p>
+  {%empty%}
+    <div>추가하고 오세요</div>
+  {% endfor %}
+  </div>
+</div>
 
-{% endfor %}
 
 </p>
 {% endblock %}
