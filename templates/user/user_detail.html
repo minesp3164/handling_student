@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 <h1>{{user.username}}</h1>
+<a href="/user/edit/{{user.username}}">편집하기</a>
 <div>가입한 시간: {{user.date_joined}}</div>
 <div>마지막으로 로그인한 시간:
 {%if ismin%}

@@ -6,10 +6,25 @@
 	{% endfor %}
 {% endif %}
 <h1>{%if problems.count > 1%}{{problems.count}}개의 문제들
-    {%else%} {{problems.count}}개의 문제
-  {%endif%}
+    {% else %} {{problems.count}}개의 문제
+  {% endif %}
 </h1>
-  {%for problem in problems%}
-    <p><a href="/problems/{{problem.id}}/">{{problem.id}}:{{problem.title}}</a></p>
-  {%endfor%}
-{%endblock%}
+    <table class="article__table">
+        <thead>
+          <tr>
+            <th>
+              제목
+            </th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for problem in problems %}
+        <tr>
+          <td>
+            <a href="/problems/{{problem.id}}/">{{problem.title}}</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

@@ -1,10 +1,13 @@
 {%extends 'base.html'%}
 {%block content%}
-<h1>{{todolist.content}}</h1>
+<h1>{{todolist.title}}</h1>
 <li>
   <a href="/todolist/{{todolist.id}}/edit">편집하기</a>
-  <small>{{todolist.author}}</small>
+  <a href="/todolist/{{todolist.id}}/delete">삭제하기</a>
 </li>
+<small>{{todolist.author}}</small>
+<p></p>
+{{todolist.content}}
 <div>
   {{todolist.created_at}}
   ~

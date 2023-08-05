@@ -54,7 +54,10 @@ def todolist_checked(request, todolist_id):
 def todolist_delete(request,todolist_id):
     todolist = get_object_or_404(TodoList,pk=todolist_id)
     if todolist.author == request.user:
-        todolist.delete()
+        if request.user.is_staff:
+            todolist.delete()
+        else:
+            messages.add_message(request,"삭제 할 권한이 없습니다.")
     return HttpResponseRedirect("/todolist/")
 
 

@@ -2,10 +2,13 @@
 {% block content %}
 <h1>{{problem.title}}</h1>
 <h2>{{problem.difficulty}}</h2>
+<a href="/problems/{{problem.id}}/edit">편집하기</a>
+<a href="/problems/{{problem.id}}/delete">삭제하기</a>
+<p></p>
+<small>{{problem.created_at }}</small>
 <div>
   {{problem.content|linebreaksbr}}
 </div>
-<p></p>
 <div class="comment_count">{{problem.comment_set.count}}개의 댓글</div>
 <ul>
   {%for comment in problem.comment_set.all%}

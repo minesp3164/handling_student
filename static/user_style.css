@@ -6,3 +6,35 @@ body{
     height: 100vh;
     margin: 0;
 }
+
+
+.input__form {
+    width: 100%;
+    padding: 1em .5em;
+}
+
+.login__layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1em;
+}
+
+button {
+    padding: 0.5em 1.5em;
+}
+
+input {
+    border-radius: 3px;
+    padding: .4em 1em;
+}
+
+label {
+    display: block;
+    width: 80px;
+}
+
+p {
+    display: flex;
+    align-items: center;
+}

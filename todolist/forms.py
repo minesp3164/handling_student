@@ -7,15 +7,21 @@ class TodoListForm(forms.ModelForm):
     class Meta:
       model = TodoList
       fields = [
+        'title',
         'content',
         'finish_at',
       ]
 
       widgets={
-        "content": forms.TextInput(
+        'title': forms.TextInput(
           attrs={
-            "placeholeder":"할일.."
+            "placeholder":"제목.."
           }
         ),
-        "finish_at": forms.DateInput()
+        "content": forms.TextInput(
+          attrs={
+            "placeholder":"할일.."
+          }
+        ),
+        "finish_at": forms.DateInput(),
       }

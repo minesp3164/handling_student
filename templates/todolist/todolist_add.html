@@ -3,8 +3,7 @@
 
 <form method="post">
   {% csrf_token %}
+  {{form.as_div}}
   <button type="submit">추가</button>
 </form>
-
-
 {% endblock %}

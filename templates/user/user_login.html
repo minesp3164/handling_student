@@ -5,9 +5,10 @@
     <h1>Handling Student</h1>
      {% csrf_token %}
      {{form.as_p}}
-     <button type="submit" class> 로그인 </button>
-        <a href="/user/signup">회원가입 하러 가기</a>
-
+    <div class="login__layout">
+     <button type="submit"> 로그인 </button>
+      <a href="/user/signup">회원가입 하러 가기</a>
+    </div>
   </form>
 </div>
 {%endblock%}

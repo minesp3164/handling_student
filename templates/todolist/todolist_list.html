@@ -10,16 +10,15 @@
   <div id="todolist_list" class="">
     <p>
   {%for todolist in todolists%}
-      <a href='detail/{{todolist.id}}'>{{ todolist.content }}</a>
-      <l>{{todolist.id}}</l>
+      <a href='detail/{{todolist.id}}'>{{ todolist.title }}</a>
       <small>{{todolist.created_at}}</small>
       <small>~{{todolist.finish_at}}</small>
-      <form action="/todolist/{{todolist.id}}/checked/" method="post">
+      <form method="post">
         {%csrf_token%}
         {% if todolist.checked %}
-            <button type="submit"><i class="fa-solid fa-square-check"></i></button>
+            <a href="/todolist/{{todolist.id}}/checked"><i class="fa-solid fa-square-check"></i></a>
         {% else %}
-            <button type="submit"><i class="fa-regular fa-square"></i></button>
+           <a href="/todolist/{{todolist.id}}/checked"><i class="fa-regular fa-square"></i></a>
         {%endif%}
       </form>
     </p>

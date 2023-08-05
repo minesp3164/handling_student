@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -23,8 +23,7 @@ INSTALLED_APPS = [
     'user',
     'problems',
     'todolist',
-    'tailwind',
-    'theme',
+
 ]
 
 MIDDLEWARE = [
@@ -98,5 +97,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
-    "127.0.0.1",
+    "0.0.0.0"
 ]

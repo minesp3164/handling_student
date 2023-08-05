@@ -1,8 +1,10 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, UserForm
 from .models import User
 
 
@@ -25,13 +27,13 @@ def login_view(request):
         context = {
             "form": form,
         }
-        return render(request, "user/login.html", context)
+        return render(request, "user/user_login.html", context)
     else:
         form = LoginForm()
         context = {
             "form": form,
         }
-        return render(request, "user/login.html", context)
+        return render(request, "user/user_login.html", context)
 
 
 def logout_view(request):
@@ -50,13 +52,13 @@ def signup_view(request):
             context = {
                 "form": form,
             }
-            return render(request, "user/signup.html",context)
+            return render(request, "user/user_signup.html",context)
     else:
         form = SignupForm()
         context = {
             "form": form
         }
-        return render(request, "user/signup.html", context)
+        return render(request, "user/user_signup.html", context)
 
 
 def user_detail(request,username):
@@ -73,3 +75,26 @@ def user_detail(request,username):
         'ismin': ismin
     }
     return render(request, "user/user_detail.html", context)
+
+
+def user_edit(request,username):
+    user = get_object_or_404(User,username=username)
+    if user != request.user:
+        messages.error(request,'이 아이디의 주인이 아닙니다')
+        return redirect('/problems/')
+    if request.method == "POST":
+        form = UserForm(request.POST,instance=user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return HttpResponseRedirect(f'/user/detail/{user.username}')
+        else:
+            form.add_error("모든 것을 채우시오.")
+    else:
+        form = UserForm(instance=user)
+    context = {
+        "form":form
+    }
+    return render(request,'user/user_edit.html',context)
+
+
