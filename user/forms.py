@@ -73,3 +73,10 @@ class UserForm(forms.ModelForm):
             'password',
             'email',
         ]
+        password = forms.CharField(min_length=4,
+                                   widget=forms.PasswordInput(
+                                       attrs={
+                                           "placeholder": "비밀번호를 입력하여 주시오.",
+                                       },
+                                   ),
+                                   )

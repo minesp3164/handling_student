@@ -3,30 +3,41 @@
 <h1>
   {{user.username}} 의TodoList
 </h1>
-<div id="wrapper">
-  <div class="one">
-      <a href="add/" class="bg-cyan-300"> 추가</a>
-  </div>
-  <div id="todolist_list" class="">
-    <p>
+<button type="button" onClick="location.href='add/'">추가</button>
+<table class="article__table">
+  <thead>
+    <tr>
+      <th>제목</th>
+      <th>기간</th>
+      <th>성공 여부</th>
+    </tr>
+  </thead>
+  <tbody>
   {%for todolist in todolists%}
-      <a href='detail/{{todolist.id}}'>{{ todolist.title }}</a>
-      <small>{{todolist.created_at}}</small>
-      <small>~{{todolist.finish_at}}</small>
-      <form method="post">
-        {%csrf_token%}
-        {% if todolist.checked %}
+    <tr>
+      <td>
+          <a href='detail/{{todolist.id}}'>{{ todolist.title }}</a>
+      </td>
+      <td>
+        <small>{{todolist.created_at}}</small>
+        <small>~{{todolist.finish_at}}</small>
+      </td>
+      <td>
+        <form method="post">
+          {%csrf_token%}
+          {% if todolist.checked %}
             <a href="/todolist/{{todolist.id}}/checked"><i class="fa-solid fa-square-check"></i></a>
-        {% else %}
-           <a href="/todolist/{{todolist.id}}/checked"><i class="fa-regular fa-square"></i></a>
-        {%endif%}
-      </form>
-    </p>
-  {%empty%}
-    <div>추가하고 오세요</div>
+          {% else %}
+            <a href="/todolist/{{todolist.id}}/checked"><i class="fa-regular fa-square"></i></a>
+          {%endif%}
+        </form>
+      </td>
+    {%empty%}
+    <td>추가하고 오세요</td>
   {% endfor %}
-  </div>
-</div>
+    </tr>
+  </tbody>
+</table>
 
 
 </p>

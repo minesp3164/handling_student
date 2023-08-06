@@ -6,6 +6,8 @@
   {% load static%}
   <script src="https://kit.fontawesome.com/8f52cccda6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{%static 'base_style.css'%}">
+  <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -14,8 +16,8 @@
         <a href="/user/detail/{{user.username}}"><i class="fa-solid fa-user"></i></a>
       </div>
       <ul class="navbar__menu">
-        <li><a href="/problems/">problems</a></li>
-        <li><a href="/todolist/">todolist</a></li>
+        <li><button type="button" onClick="location.href='/problems/'">Problems</button></li>
+        <button type="button" onClick="location.href='/todolist/'">TodoList</button>
       </ul>
       <ul class="navbar__tome">
         <a href="/user/logout/"><i class="fa-solid fa-right-from-bracket"></i></a>

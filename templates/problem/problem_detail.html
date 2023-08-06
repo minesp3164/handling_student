@@ -10,7 +10,7 @@
   {{problem.content|linebreaksbr}}
 </div>
 <div class="comment_count">{{problem.comment_set.count}}개의 댓글</div>
-<ul>
+<ul class="comment__wrapper">
   {%for comment in problem.comment_set.all%}
 
   <li>
@@ -19,7 +19,7 @@
     {%if user == comment.user%}
         <form method="post" action="/problems/comment_delete/{{comment.id}}">
           {% csrf_token%}
-          <button type="submit"><i class="fa-solid fa-delete-left"></i></button>
+          <button type="submit" class="comment__button"><i class="fa-solid fa-delete-left"></i></button>
         </form>
     {%endif%}
   </li>

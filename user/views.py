@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -86,6 +86,7 @@ def user_edit(request,username):
         form = UserForm(request.POST,instance=user)
         if form.is_valid():
             user = form.save(commit=False)
+            update_session_auth_hash(request,user)
             user.save()
             return HttpResponseRedirect(f'/user/detail/{user.username}')
         else:
