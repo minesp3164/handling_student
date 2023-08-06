@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
@@ -31,6 +33,7 @@ def problem_add(request):
         if form.is_valid():
             problem = form.save(commit=False)
             problem.user = request.user
+            problem.created_at = datetime.now()
             problem.save()
 
             return HttpResponseRedirect('/problems/')

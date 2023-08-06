@@ -9,5 +9,4 @@ urlpatterns = [
     path('problem_add/',problem_add),
     path('<int:problems_id>/edit/',problem_edit),
     path('<int:problems_id>/delete/',problem_delete)
-
 ]
